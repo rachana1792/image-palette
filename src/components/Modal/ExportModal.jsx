@@ -1,4 +1,4 @@
-import  React,{useState} from 'react';
+import  React,{useState, useContext, useEffect} from 'react';
 import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,7 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import DialogContent from '@mui/material/DialogContent';
 import { styled } from '@mui/material/styles';
 import { ButtonUpload } from '../Button';
-import ExportButton from '../Button/ExportButton';
+import AppContext from '../AppContext';
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
@@ -33,6 +33,15 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 export default  function ExportModal() {
 
   const [isOpen, setisOpen] = useState(false);
+  const [numbers, setNumbers] = useState([])
+
+
+  const myContext = useContext(AppContext);
+
+  useEffect(() => {
+    setNumbers(myContext.countPalette)
+
+  },[myContext])
 
 
   const handleClickOpen = () => {
@@ -63,12 +72,14 @@ export default  function ExportModal() {
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Export Palatte
+              csv:
             </Typography>
           </Toolbar>
         </AppBar>
         <DialogContent>
-          <ExportButton/>
+        <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+              {numbers}
+            </Typography>
         </DialogContent>
        
       </BootstrapDialog>

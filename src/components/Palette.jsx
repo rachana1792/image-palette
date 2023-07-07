@@ -16,6 +16,7 @@ export default function Palette() {
   const [palette,setPalatte] = useState(['#0000'])
   const [preview, setPreview] = useState('');
   const [previewObj, setPreviewObj] = useState([])
+  const [count, setCount]= useState([])
 
   // const toggleSetting2 = () => {
   //   setting3 ? setSetting2(true) : setSetting2value(false);
@@ -25,10 +26,14 @@ export default function Palette() {
     imagePalatte: palette,
     imagePreview: preview,
     imageObject: previewObj,
+    countPalette: count,
     setPalatte,
     setPreview,
-    setPreviewObj
+    setPreviewObj,
+    setCount
   };
+
+
 
   return (
     <AppContext.Provider value={imagePalette}>
