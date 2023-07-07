@@ -11,16 +11,48 @@ import ImagePreview from './Image/ImagePreview';
 
 import AppContext from './AppContext';
 
+const imageData = [
+  {
+    id:1,
+    color:'rgba(240, 240, 240, 1)',
+    top:'-100px',
+    left:'20px',
+    
+  },
+  {
+    id:2,
+    color:'rgba(240, 240, 240, 1)',
+    top:'-190px',
+    left:'50px'
+  },
+  {
+    id:3,
+    color:'rgba(1, 22, 39, 1)',
+    top:'-110px',
+    left:'70px'
+  },
+  {
+    id:4,
+    color:'rgba(240, 240, 240, 1)',
+    top:'-180px',
+    left:'10px'
+  },
+  {
+    id:5,
+    color:'rgba(240, 240, 240, 1)',
+    top:'-170px',
+    left:'100px'
+  }
+
+]
+
 export default function Palette() {
 
-  const [palette,setPalatte] = useState(['#0000'])
+  const [palette,setPalatte] = useState(	'rgb(255, 255, 255)')
   const [preview, setPreview] = useState('');
   const [previewObj, setPreviewObj] = useState([])
   const [count, setCount]= useState([])
 
-  // const toggleSetting2 = () => {
-  //   setting3 ? setSetting2(true) : setSetting2value(false);
-  // };
 
   const imagePalette = {
     imagePalatte: palette,
