@@ -44,16 +44,32 @@ export default function ButtonIcon() {
   const myContext = useContext(AppContext);
 
   const [num, setNum]=useState(6)
+  const [updateArr, setUpdateArr]=useState({ })
+
   const [numArr, setNumArr]=useState(imageData)
 
 
   const incrementClicked=(e)=>{
-
+// console.log(num)
     if(num<=10){
-      numArr.push(num)
+      console.log(numArr)
+      const topVal =-100+num
+      const leftVal =15*num
+      setUpdateArr({
+        id:num,
+        color:'rgba(240, 240, 240, 1)',
+        top: topVal + 'px',
+        left: leftVal+ 'px'
+      }) 
+
+      // console.log("updateArr",updateArr)
+
+// console.log("updateArr",updateArr)
+  updateArr.id && numArr.push(updateArr)
       setNum(num+1)
     }
-    myContext.setCount([...numArr]);
+    // console.log("updateArr",numArr)
+     myContext.setCount([...numArr]);
 
   }
 

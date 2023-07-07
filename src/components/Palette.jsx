@@ -15,7 +15,7 @@ const imageData = [
   {
     id:1,
     color:'rgba(240, 240, 240, 1)',
-    top:'-100px',
+    top:'-200px',
     left:'20px',
     
   },
@@ -34,14 +34,14 @@ const imageData = [
   {
     id:4,
     color:'rgba(240, 240, 240, 1)',
-    top:'-180px',
-    left:'10px'
+    top:'-280px',
+    left:'170px'
   },
   {
     id:5,
     color:'rgba(240, 240, 240, 1)',
-    top:'-170px',
-    left:'100px'
+    top:'-370px',
+    left:'300px'
   }
 
 ]
@@ -51,7 +51,7 @@ export default function Palette() {
   const [palette,setPalatte] = useState(	'rgb(255, 255, 255)')
   const [preview, setPreview] = useState('');
   const [previewObj, setPreviewObj] = useState([])
-  const [count, setCount]= useState([])
+  const [count, setCount]= useState(imageData)
 
 
   const imagePalette = {
