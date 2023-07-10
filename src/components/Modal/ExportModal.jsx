@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -19,8 +19,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(10),
     width: '70vh',
     height: '30vh',
-    marginLeft: 130,
-    marginTop: 30
   },
 
   '& 	.MuiAppBar-root': {
@@ -33,15 +31,22 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 export default function ExportModal() {
 
   const [isOpen, setisOpen] = useState(false);
-  const [numbers, setNumbers] = useState([])
-
-
 
   const myContext = useContext(AppContext);
 
-  useEffect(() => {
-    setNumbers(myContext.countPalette)
-  }, [myContext])
+
+
+  const getColorData = (color) => {
+
+    if (color) {
+      const rgba = color?.replace(/^rgba?\(|\s+|\)$/g, '').split(',');
+
+      const hex = `${((1 << 24) + (parseInt(rgba[0]) << 16) + (parseInt(rgba[1]) << 8) + parseInt(rgba[2])).toString(16).slice(1)}`;
+
+      return hex
+
+    }
+  }
 
 
   const handleClickOpen = () => {
@@ -77,18 +82,17 @@ export default function ExportModal() {
           </Toolbar>
         </AppBar>
         <DialogContent >
-          <Typography variant="h6" component="div">{'['}</Typography>
-          {
-            numbers.map((hero, index) => (
 
-              <Typography key={hero.id} sx={{ ml: 1, flex: 1 }} variant="h6" component="div">
-                {'{' + hero.id + ", " + hero.color + "}"}
+          {
+            myContext?.countPalette.map((hero, index) => (
+
+              <Typography key={hero.id} sx={{ display: 'inline-block' }} variant="h6" component="div">
+                {getColorData(hero.color) + ", "}
               </Typography>
 
             ))
           }
 
-          <Typography variant="h6" component="div">{']'}</Typography>
 
         </DialogContent>
 
