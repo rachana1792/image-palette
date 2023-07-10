@@ -1,4 +1,4 @@
-import  React,{useState, useContext, useEffect} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,31 +17,31 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
   '& .MuiDialogContent-root': {
     padding: theme.spacing(10),
-    width:'70vh',
-    height:'30vh',
+    width: '70vh',
+    height: '30vh',
     marginLeft: 130,
     marginTop: 30
   },
 
-  '& 	.MuiAppBar-root':{
-    backgroundColor:'#fff',
-    color:'#000'
+  '& 	.MuiAppBar-root': {
+    backgroundColor: '#fff',
+    color: '#000'
   }
 }));
 
 
-export default  function ExportModal() {
+export default function ExportModal() {
 
   const [isOpen, setisOpen] = useState(false);
   const [numbers, setNumbers] = useState([])
+
 
 
   const myContext = useContext(AppContext);
 
   useEffect(() => {
     setNumbers(myContext.countPalette)
-
-  },[myContext])
+  }, [myContext])
 
 
   const handleClickOpen = () => {
@@ -55,9 +55,9 @@ export default  function ExportModal() {
 
   return (
     <div>
-          <ButtonUpload onClick={handleClickOpen} variant='outlined' endIcon={<KeyboardArrowDownIcon/>}>Export Palatte </ButtonUpload>
+      <ButtonUpload onClick={handleClickOpen} variant='outlined' endIcon={<KeyboardArrowDownIcon />}>Export Palatte </ButtonUpload>
 
-      <BootstrapDialog        
+      <BootstrapDialog
         open={isOpen}
         onClose={handleClose}
       >
@@ -76,12 +76,22 @@ export default  function ExportModal() {
             </Typography>
           </Toolbar>
         </AppBar>
-        <DialogContent>
-        <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              {numbers}
-            </Typography>
+        <DialogContent >
+          <Typography variant="h6" component="div">{'['}</Typography>
+          {
+            numbers.map((hero, index) => (
+
+              <Typography key={hero.id} sx={{ ml: 1, flex: 1 }} variant="h6" component="div">
+                {'{' + hero.id + ", " + hero.color + "}"}
+              </Typography>
+
+            ))
+          }
+
+          <Typography variant="h6" component="div">{']'}</Typography>
+
         </DialogContent>
-       
+
       </BootstrapDialog>
     </div>
   );

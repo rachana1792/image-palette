@@ -12,7 +12,6 @@ export default function FormRow() {
   useEffect(() => {
     setNumbers(myContext.countPalette)
     setcolor(myContext.imagePalatte)
-    console.log(myContext.imageObject)
 
   },[myContext])
 

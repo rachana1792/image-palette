@@ -31,16 +31,15 @@ export default function ButtonIcon() {
 
 
   const incrementClicked=()=>{
-    
-    if(num<=10){
-      console.log(numArr)
-      const topVal =-100+num
-      const leftVal =15*num
+
+    if(num<=11){
+      const topVal = 30*num
+      const leftVal =30*num
       setUpdateArr({
         id:num,
         // color:'rgba(240, 240, 240, 1)',
-        top: topVal + 'px',
-        left: leftVal+ 'px'
+        bottom: topVal + 'px',
+        right: leftVal+ 'px'
       }) 
 
       // console.log("updateArr",updateArr)
