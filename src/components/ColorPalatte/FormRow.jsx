@@ -22,11 +22,11 @@ export default function FormRow() {
   
 
  
-  const headings = myContext.countPalette.map((hero, index)=>
+  const grids = myContext.countPalette.map((hero, index)=>
   <Grid style={{backgroundColor: hero.color}} key={index} item xs={2}><Item color={hero.color}/></Grid>)
   return (
     <React.Fragment>
-      {headings}
+      {grids}
     </React.Fragment>
   );
 }
