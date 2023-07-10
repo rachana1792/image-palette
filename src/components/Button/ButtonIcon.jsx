@@ -4,60 +4,41 @@ import {ItemButton} from './index'
 import Button from '@mui/material/Button';
 import AppContext from "../AppContext";
 
-const imageData = [
-  {
-    id:1,
-    color:'rgba(240, 240, 240, 1)',
-    top:'-200px',
-    left:'20px',
-    
-  },
-  {
-    id:2,
-    color:'rgba(240, 240, 240, 1)',
-    top:'-190px',
-    left:'50px'
-  },
-  {
-    id:3,
-    color:'rgba(1, 22, 39, 1)',
-    top:'-110px',
-    left:'70px'
-  },
-  {
-    id:4,
-    color:'rgba(240, 240, 240, 1)',
-    top:'-280px',
-    left:'170px'
-  },
-  {
-    id:5,
-    color:'rgba(240, 240, 240, 1)',
-    top:'-370px',
-    left:'300px'
-  }
 
-]
 
 export default function ButtonIcon() {
+
+  const [colorData,setColorData] = useState("")
+
 
   const myContext = useContext(AppContext);
 
   const [num, setNum]=useState(6)
   const [updateArr, setUpdateArr]=useState({ })
 
-  const [numArr, setNumArr]=useState(imageData)
+  const [numArr, setNumArr]=useState(myContext?.countPalette)
+
+  useEffect(() => {
+    setNumArr(myContext?.countPalette)
+    myContext.setCount([...numArr]);
+    // console.log(myContext.imageObject,myContext.countPalette)
+    setColorData(myContext.imagePalatte)
+
+  },[])
 
 
-  const incrementClicked=(e)=>{
-// console.log(num)
+  
+
+
+  const incrementClicked=()=>{
+    
     if(num<=10){
       console.log(numArr)
       const topVal =-100+num
       const leftVal =15*num
       setUpdateArr({
         id:num,
-        color:'rgba(240, 240, 240, 1)',
+        // color:'rgba(240, 240, 240, 1)',
         top: topVal + 'px',
         left: leftVal+ 'px'
       }) 
@@ -75,6 +56,8 @@ export default function ButtonIcon() {
 
   const decrementClicked=(e)=>{
 
+    // console.log(numArr,"numArr")
+
     if(numArr.length!=2){
       numArr.pop( num)
       setNum(num-1)
@@ -83,11 +66,8 @@ export default function ButtonIcon() {
 
   }
 
-  useEffect(() => {
-    setNumArr(myContext?.countPalette)
-    myContext.setCount([...numArr]);
 
-  },[])
+
 
 
     return (

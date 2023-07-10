@@ -9,8 +9,9 @@ export default function ImagePreview() {
 
   const myContext = useContext(AppContext);
  const myCanvas = useRef();
+ const dragRef = useRef([]);
+
  const [points, setPoints] = useState([])
- const [dragColor, setDragColor] = useState()
  
   useEffect(() => {
     setPoints(myContext?.countPalette)
@@ -23,27 +24,17 @@ export default function ImagePreview() {
     image.onload = () => {
       context.drawImage(image, 0, 0);
       image.style.display = "none";
+      myContext.setPreviewObj(myCanvas)
+
+      myContext.getInitialColor()
     };
 
-    myContext.setPreviewObj(myCanvas)
 
-    // myCanvas.current.addEventListener('click', function(e) {
-
-    //   const bounding = myCanvas.current.getBoundingClientRect();
-
-    //   var x = e.clientX - bounding.left;
-    //   var y = e.clientY - bounding.top;
-    //   console.log(x,y);
-
-    //     var pixels = context.getImageData(x, y, 1, 1);
-    //     const data = pixels.data;
-    //     const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
-
-    //     console.log(rgba);
-    //     myContext.setPalatte(rgba)
-    // });
-
+   
   }, [myContext]);
+
+
+
 
   const getColor = (e, value) => {
 
@@ -58,10 +49,9 @@ export default function ImagePreview() {
         const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
 
         const objIndex = points.findIndex((obj => obj.id == value.id));
-        console.log(value.id,"objIndex", points[objIndex].id);
+        // console.log(value.id,"objIndex", points[objIndex].id);
         points[objIndex].color = rgba
-        setDragColor()
-        console.log(points[4]);
+        // console.log(points[4]);
         myContext.setPalatte(rgba)
 }
 
@@ -79,8 +69,8 @@ export default function ImagePreview() {
       />
       {
          points.map((hero, index)=>(
-          <Draggable onDrag={(e)=>getColor(e,hero)} key={hero.id}  bounds="parent">
-              <div style={{position:'absolute',marginTop:hero.top,marginLeft:hero.left}}><PanoramaFishEyeIcon/> </div>
+          <Draggable  onDrag={(e)=>getColor(e,hero)} name="draggable" key={hero.id}  bounds="parent">
+              <div id={hero.id}  ref={dragRef}  style={{position:'absolute', marginLeft:hero.left, marginTop:hero.top}}><PanoramaFishEyeIcon/> </div>
             </Draggable>
          ))
       }            
@@ -88,6 +78,9 @@ export default function ImagePreview() {
             <Draggable key={elementInArray}  bounds="parent">
               <div style={{position:'absolute'}}><PanoramaFishEyeIcon/> </div>
             </Draggable>
+
+             style={{position:'absolute'
+
             ))}  */}
         </div>
 
