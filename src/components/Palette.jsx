@@ -63,12 +63,12 @@ export default function Palette() {
 
     Object.keys(count).forEach(key => {
 
-      var element = document.getElementById(count[key].id);
+      var element = document.getElementById(count[key]?.id);
 
       var rect = element?.getBoundingClientRect();
       const bounding = previewObj?.current?.getBoundingClientRect();
-      let x = rect.x - bounding?.left
-      let y = rect.y - bounding?.top
+      let x = rect?.x - bounding?.left
+      let y = rect?.y - bounding?.top
       var pixels = context?.getImageData(x, y, 1, 1);
       const data = pixels?.data;
       const rgba = pixels?.data && `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;

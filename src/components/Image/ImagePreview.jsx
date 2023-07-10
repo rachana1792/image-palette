@@ -22,7 +22,7 @@ export default function ImagePreview() {
     image.crossOrigin = "Anonymous";
 
     image.onload = () => {
-      context.drawImage(image, 0, 0);
+      context.drawImage(image, 0, 0, 500,500);
       image.style.display = "none";
       myContext.setPreviewObj(myCanvas)
 
